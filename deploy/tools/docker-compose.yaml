@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nest-cli:
+    user: node:node
+    build: 
+      context: ../../builds/nest-cli
+    command: ["bash"]
+    volumes:
+      - ../../src:/app

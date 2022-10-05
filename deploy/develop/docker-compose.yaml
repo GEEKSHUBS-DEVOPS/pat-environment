@@ -1,0 +1,16 @@
+version: '3'
+services:
+  frontend:
+    build: 
+      context: ../../builds/angular-cli
+    command: ["tail", "-f", "/dev/null"]
+    volumes:
+      - ../../src/frontend:/app
+  backend:
+    build: 
+      context: ../../builds/nest-cli
+    command: ["yarn", "run", "start:debug"]
+    ports:
+      - 3000:3000
+    volumes:
+      - ../../src/backend:/app
