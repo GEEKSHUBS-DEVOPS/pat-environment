@@ -1,11 +1,24 @@
 version: '3'
 services:
-  frontend:
+  frontend: &webapp
     build: 
       context: ../../builds/angular-cli
-    command: ["tail", "-f", "/dev/null"]
+    command: ["ng", "serve", "--host", "0.0.0.0"]
+    env_file:
+      - ../../.env
+    ports:
+      - 4200:4200
     volumes:
       - ../../src/frontend:/app
+  admin-panel:
+    <<: *webapp
+    ports:
+      - 4201:4200
+    environment:
+      - THEME=dark
+    volumes:
+      - ../../src/admin-panel:/app
+
   backend:
     build: 
       context: ../../builds/nest-cli
@@ -14,3 +27,13 @@ services:
       - 3000:3000
     volumes:
       - ../../src/backend:/app
+
+
+  # bbdd:
+  #   build:
+  #     context: ../../builds/mongo
+
+  # mysql:
+  #   build:
+  #     context: ../../builds/mysql
+    

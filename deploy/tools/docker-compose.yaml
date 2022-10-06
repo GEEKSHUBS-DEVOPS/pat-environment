@@ -7,3 +7,24 @@ services:
     command: ["bash"]
     volumes:
       - ../../src:/app
+
+  angular-cli:
+    user: node:node
+    build: 
+      context: ../../builds/angular-cli
+    command: ["bash"]
+    volumes:
+      - ${HOME}/.ssh:/home/node/.ssh
+      - ${HOME}/.gitconfig:/home/node/.gitconfig
+      - ../../src:/app
+
+  git:
+    user: operator:operator
+    build: 
+      context: ../../builds/git
+    entrypoint: ["git"]
+    working_dir: /app
+    volumes:
+      - ${HOME}/.ssh:/home/node/.ssh
+      - ${HOME}/.gitconfig:/home/node/.gitconfig
+      - ../../src:/app
