@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build1:
+  build-challenge:
 
     runs-on: ubuntu-latest
 
@@ -17,11 +17,11 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file ./src/challenge-envars/Dockerfile --tag davidpestana/challenge-env ./src/challenge-envars/
 
-  build2:
+  build-frontend:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file ./src/challenge-envars/Dockerfile --tag davidpestana/challenge-env ./src/challenge-envars/
+      run: docker build . --file ./src/frontend/Dockerfile --tag davidpestana/pat-frontend ./src/frontend/
