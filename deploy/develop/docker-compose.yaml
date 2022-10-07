@@ -1,50 +1,54 @@
 version: '3'
 services:
-  frontend: &webapp
-    build: 
-      context: ../../builds/angular-cli
-    command: ["ng", "serve", "--host", "0.0.0.0"]
-    env_file:
-      - ../../.env
-    ports:
-      - 4200:4200
-    volumes:
-      - ../../src/frontend:/app
-  admin-panel:
-    <<: *webapp
-    ports:
-      - 4201:4200
-    environment:
-      - THEME=dark
-    volumes:
-      - ../../src/admin-panel:/app
+  # frontend: &webapp
+  #   build: 
+  #     context: ../../builds/angular-cli
+  #   command: ["ng", "serve", "--host", "0.0.0.0"]
+  #   env_file:
+  #     - ../../.env
+  #   ports:
+  #     - 4200:4200
+  #   volumes:
+  #     - ../../src/frontend:/app
+  # admin-panel:
+  #   <<: *webapp
+  #   ports:
+  #     - 4201:4200
+  #   environment:
+  #     - THEME=dark
+  #   volumes:
+  #     - ../../src/admin-panel:/app
 
-  backend:
-    build: 
-      context: ../../builds/nest-cli
-    command: ["yarn", "run", "start:debug"]
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/nest
-    ports:
-      - 3000:3000
-    volumes:
-      - ../../src/backend:/app
+  # backend:
+  #   build: 
+  #     context: ../../builds/nest-cli
+  #   command: ["yarn", "run", "start:debug"]
+  #   environment:
+  #     - MONGO_URL=mongodb://mongo:27017/nest
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ../../src/backend:/app
 
   challenge-envvars:
     build: 
       context: ../../builds/php
     working_dir: /app
-    command: ["php", "-S", "0.0.0.0:8000"]
+    entrypoint: ["bash"]
+    command: ["start.sh"]
+    restart: always
+    environment:
+      - WHOAMI=David
     ports:
       - 8000:8000
     volumes:
       - ../../src/challenge-envars/:/app
 
-  mongo:
-    image: mongo:latest
-    restart: unless-stopped
-    volumes:
-      - mongodb-data:/data/db
+  # mongo:
+  #   image: mongo:latest
+  #   restart: unless-stopped
+  #   volumes:
+  #     - mongodb-data:/data/db
 
-volumes:
-  mongodb-data: null
+# volumes:
+#   mongodb-data: null

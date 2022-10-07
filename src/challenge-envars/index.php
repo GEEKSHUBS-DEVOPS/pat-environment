@@ -1,3 +1,3 @@
 <?php
-    echo("hola mundo")
+    echo("hola me llamo " . $_ENV["WHOAMI"]);
 ?>
