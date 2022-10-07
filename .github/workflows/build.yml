@@ -49,7 +49,7 @@ jobs:
         with:
           file: src/challenge-envars/Dockerfile
           context: src/challenge-envars
-          image: ${{ github.repository }}-challenge
+          # image: ${{ github.repository }}-challenge
           push: true
           tags: master
           labels: ${{ steps.meta.outputs.labels }}
