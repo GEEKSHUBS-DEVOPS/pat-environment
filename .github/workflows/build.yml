@@ -35,7 +35,7 @@ jobs:
           file: src/challenge-envars/Dockerfile
           context: src/challenge-envars
           push: false
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: master
           labels: ${{ steps.meta.outputs.labels }}
 
   # build-frontend:
