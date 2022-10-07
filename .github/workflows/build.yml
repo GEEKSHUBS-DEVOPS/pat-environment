@@ -29,12 +29,12 @@ jobs:
       - name: Debug
         run: echo "${{ steps.meta.outputs.tags }}"
 
-      - name: Build Docker image
+      - name: Build and Push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           file: src/challenge-envars/Dockerfile
           context: src/challenge-envars
-          push: false
+          push: true
           tags: master
           labels: ${{ steps.meta.outputs.labels }}
 
