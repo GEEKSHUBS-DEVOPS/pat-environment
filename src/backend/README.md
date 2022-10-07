@@ -44,6 +44,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Env Vars
+
+> MONGO_URL dsn to connect mongo server  ( by default mongodb://localhost:27017/nest)
+
 
 ## Test
 

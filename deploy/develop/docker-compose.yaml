@@ -23,17 +23,28 @@ services:
     build: 
       context: ../../builds/nest-cli
     command: ["yarn", "run", "start:debug"]
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/nest
     ports:
       - 3000:3000
     volumes:
       - ../../src/backend:/app
 
+  challenge-envvars:
+    build: 
+      context: ../../builds/php
+    working_dir: /app
+    command: ["php", "-S", "0.0.0.0:8000"]
+    ports:
+      - 8000:8000
+    volumes:
+      - ../../src/challenge-envars/:/app
 
-  # bbdd:
-  #   build:
-  #     context: ../../builds/mongo
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    volumes:
+      - mongodb-data:/data/db
 
-  # mysql:
-  #   build:
-  #     context: ../../builds/mysql
-    
+volumes:
+  mongodb-data: null

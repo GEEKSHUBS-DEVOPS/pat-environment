@@ -2,6 +2,7 @@ start:
 	echo "Launch containers"
 	docker compose -f ./deploy/develop/docker-compose.yaml up -d
 	docker compose -f ./deploy/develop/docker-compose.yaml logs -f
+
 restart:
 	echo "Destroy containers"
 	docker compose -f ./deploy/develop/docker-compose.yaml down --remove-orphans
@@ -16,10 +17,9 @@ angular-cli:
 	docker compose -f ./deploy/tools/docker-compose.yaml run -it --rm angular-cli
 
 install:
-    docker compose -f ./deploy/tools/docker-compose.yaml run -it --rm -w /app/backend nest-cli npm i
-    docker compose -f ./deploy/tools/docker-compose.yaml run -it --rm -w /app/frontend angular-cli npm i
+	docker compose -f ./deploy/tools/docker-compose.yaml run -it --rm -w /app/backend nest-cli npm i
+	docker compose -f ./deploy/tools/docker-compose.yaml run -it --rm -w /app/frontend angular-cli npm i
 	docker compose -f ./deploy/tools/docker-compose.yaml run -it --rm -w /app/admin-panel angular-cli npm i
-
 
 build:
 	docker compose -f ./deploy/develop/docker-compose.yaml build --no-cache
@@ -32,6 +32,3 @@ publish:
 
 cleanup:
 	docker rm -f $$(docker ps -aq)
-
-opcion2:
-	la -h

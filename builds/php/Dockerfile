@@ -1,0 +1,2 @@
+FROM php
+WORKDIR /app
