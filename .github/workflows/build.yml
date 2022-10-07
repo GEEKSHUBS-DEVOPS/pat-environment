@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+
 jobs:
 
   build-challenge:
@@ -44,6 +49,7 @@ jobs:
         with:
           file: src/challenge-envars/Dockerfile
           context: src/challenge-envars
+          image: ${{ github.repository }}-challenge
           push: true
           tags: master
           labels: ${{ steps.meta.outputs.labels }}
