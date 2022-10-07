@@ -21,7 +21,7 @@ jobs:
         run: export cantidad=toda
 
       - name: Del paso anterior
-        run: echo ${steps.guasa.cantidad}
+        run: echo ${{ steps.guasa.cantidad }}
 
       # # Extract metadata (tags, labels) for Docker
       # # https://github.com/docker/metadata-action
